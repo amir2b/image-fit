@@ -44,6 +44,6 @@ for Laravel 5.1+
 ```php
     'providers' => [
         // ...
-        Amir2b\ImageFit\CaptchaServiceProvider::class,
+        Amir2b\ImageFit\ImageFitServiceProvider::class,
     ]
 ```
