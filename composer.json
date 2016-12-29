@@ -1,27 +1,27 @@
 {
-    "name": "amir2b/image-fit",
+	"name": "amir2b/image-fit",
 	"type": "library",
-    "description": "This package is for fiting image",
+	"description": "This package is for fiting image",
 	"keywords": ["Laravel", "Image", "Fit"],
 	"license": "MIT",
-    "require": {
+	"require": {
 		"php": ">=5.5",
-        "intervention/image": "^2.3"
-    },
-    "authors": [
-        {
-            "name": "Amir Bashiri",
-            "email": "bashiri.net@gmail.com",
+		"intervention/image": "^2.3"
+	},
+	"authors": [
+		{
+			"name": "Amir Bashiri",
+			"email": "bashiri.net@gmail.com",
 			"role": "Developer"
-        }
-    ],
+		}
+	],
 	"autoload": {
-        "psr-4": {
-            "Amir2b\\ImageFit\\": "src"
-        },
-        "files": [
-          "files/helpers.php"
-        ]
-    },
-    "minimum-stability": "dev"
+		"psr-4": {
+			"Amir2b\\ImageFit\\": "src"
+		},
+		"files": [
+			"files/helpers.php"
+		]
+	},
+	"minimum-stability": "dev"
 }
