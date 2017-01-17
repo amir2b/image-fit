@@ -22,7 +22,9 @@ or
 
 Require this package with composer:
 
-$```composer require amir2b/image-fit:dev-master```
+```
+composer require amir2b/image-fit:dev-master
+```
 
 Update your packages with ```composer update``` or install with ```composer install```.
 
