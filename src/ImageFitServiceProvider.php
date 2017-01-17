@@ -34,6 +34,6 @@ class ImageFitServiceProvider extends ServiceProvider
             Route::get($this->app['config']->get('image-fit.prefix') . '{image}{type}{width}x{height}.{ext}', 'Amir2b\ImageFit\ImageController@create')->where(['image' => '(/[\w\-\.\(\)]+)+', 'type' => '_|-', 'width' => '\d+', 'height' => '\d+', 'ext' => 'jpe?g|JPE?G|png|gif']);
         }
 
-        require_once  __DIR__ . '../files/helpers.php';
+        require_once  __DIR__ . '/../files/helpers.php';
     }
 }
