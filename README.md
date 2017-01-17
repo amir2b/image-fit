@@ -21,6 +21,7 @@ project's `composer.json`.
 or
 
 Require this package with composer:
+
 $```composer require amir2b/image-fit:dev-master```
 
 Update your packages with ```composer update``` or install with ```composer install```.
@@ -31,6 +32,7 @@ To use the Captcha Service Provider, you must register the provider when bootstr
 essentially two ways to do this.
 
 Find the `providers` key in `config/app.php` and register the Captcha Service Provider.
+
 for Laravel 5.1+
 ```php
     'providers' => [
