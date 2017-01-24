@@ -14,9 +14,20 @@ class ImageFitServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Publish configuration files
         $this->publishes([
             __DIR__ . '/../files/config.php' => config_path('image-fit.php'),
-        ]);
+        ], 'config');
+
+        // HTTP routing
+        if ((double) $this->app->version() >= 5.2) {
+            $this->app['router']->get($this->app['config']->get('image-fit.prefix') . '{image}{type}{width}x{height}.{ext}', '\Amir2b\ImageFit\ImageController@create')
+                ->where(['image' => '(/[\w\-\.\(\)]+)+', 'type' => '_|-', 'width' => '\d+', 'height' => '\d+', 'ext' => 'jpe?g|png|gif|JPE?G'])
+                ->middleware('web');
+        } else {
+            $this->app['router']->get($this->app['config']->get('image-fit.prefix') . '{image}{type}{width}x{height}.{ext}', '\Amir2b\ImageFit\ImageController@create')
+                ->where(['image' => '(/[\w\-\.\(\)]+)+', 'type' => '_|-', 'width' => '\d+', 'height' => '\d+', 'ext' => 'jpe?g|png|gif|JPE?G']);
+        }
     }
 
     /**
@@ -29,10 +40,6 @@ class ImageFitServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__ . '/../files/config.php', 'image-fit'
         );
-
-        if (! $this->app->routesAreCached()) {
-            Route::get($this->app['config']->get('image-fit.prefix') . '{image}{type}{width}x{height}.{ext}', 'Amir2b\ImageFit\ImageController@create')->where(['image' => '(/[\w\-\.\(\)]+)+', 'type' => '_|-', 'width' => '\d+', 'height' => '\d+', 'ext' => 'jpe?g|JPE?G|png|gif']);
-        }
 
         require_once  __DIR__ . '/../files/helpers.php';
     }
