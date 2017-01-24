@@ -3,7 +3,6 @@
 namespace Amir2b\ImageFit;
 
 use Illuminate\Support\ServiceProvider;
-use Route;
 
 class ImageFitServiceProvider extends ServiceProvider
 {
