@@ -12,7 +12,7 @@ project's `composer.json`.
 {
     "require": {
         "laravel/framework": "5.0.*",
-        "amir2b/image-fit": "dev-master"
+        "amir2b/image-fit": "^1.0"
     },
     "minimum-stability": "dev"
 }
@@ -23,7 +23,7 @@ or
 Require this package with composer:
 
 ```
-composer require amir2b/image-fit:dev-master
+composer require amir2b/image-fit
 ```
 
 Update your packages with ```composer update``` or install with ```composer install```.
