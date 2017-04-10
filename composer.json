@@ -1,7 +1,7 @@
 {
 	"name": "amir2b/image-fit",
 	"type": "library",
-	"description": "This package is for fiting image",
+	"description": "This package is for fitting image",
 	"keywords": ["Laravel", "Image", "Fit"],
 	"license": "MIT",
 	"require": {
