@@ -11,7 +11,14 @@ if (! function_exists('image_url')) {
      */
     function image_url($file, $width = 0, $height = 0, $is_crop = false)
     {
-        $info = pathinfo($file);
+        if (empty($file)) {
+            if (empty(config('image-fit.default_image')))
+                return '';
+            else
+                $info = pathinfo(config('image-fit.default_image'));
+        } else
+            $info = pathinfo($file);
+
         if (count($info) == 4) {
             if (substr($info['dirname'], 0, 6) == 'files/') {
                 $info['dirname'] = substr($info['dirname'], 6);
