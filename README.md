@@ -27,12 +27,8 @@ composer require amir2b/image-fit
 
 Update your packages with ```composer update``` or install with ```composer install```.
 
-## Usage
 
-To use the Captcha Service Provider, you must register the provider when bootstrapping your Laravel application. There are
-essentially two ways to do this.
-
-Find the `providers` key in `config/app.php` and register the Captcha Service Provider.
+Find the `providers` key in `config/app.php` and register the ImageFit Service Provider.
 
 for Laravel 5.1+
 ```php
@@ -47,4 +43,10 @@ for Laravel 5.0
         // ...
         'Amir2b\ImageFit\ImageFitServiceProvider',
     ]
+```
+
+Copy the package config to your local config with the publish command:
+
+```shell
+php artisan vendor:publish --provider="Amir2b\ImageFit\ImageFitServiceProvider"
 ```
