@@ -12,7 +12,7 @@ project's `composer.json`.
 {
     "require": {
         "laravel/framework": "5.0.*",
-        "amir2b/image-fit": "^1.0"
+        "amir2b/image-fit": "^1.2"
     }
 }
 ```
