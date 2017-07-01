@@ -26,7 +26,7 @@ if (!function_exists('image_url')) {
             elseif ($info['dirname'] == 'files')
                 $file = config('image-fit.prefix') . "/{$info['filename']}";
             else
-                $file = config('image-fit.prefix') . "{$info['dirname']}/{$info['filename']}";
+                $file = config('image-fit.prefix') . "/{$info['dirname']}/{$info['filename']}";
 
             return url($file . ($is_crop ? '_' : '-') . "{$width}x{$height}.{$info['extension']}");
         }
