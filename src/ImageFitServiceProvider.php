@@ -18,6 +18,10 @@ class ImageFitServiceProvider extends ServiceProvider
             __DIR__ . '/../files/config.php' => config_path('image-fit.php'),
         ], 'config');
 
+        $this->publishes([
+            __DIR__ . '/../assets' => public_path('vendor/image-fit'),
+        ], 'public');
+
         // HTTP routing
         if ((double) $this->app->version() >= 5.2) {
             $this->app['router']->get($this->app['config']->get('image-fit.prefix') . '{image}{type}{width}x{height}.{ext}', '\Amir2b\ImageFit\ImageController@create')
