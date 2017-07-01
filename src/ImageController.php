@@ -3,15 +3,15 @@
 namespace Amir2b\ImageFit;
 
 use App\Http\Controllers\Controller;
-use Request;
 use Image;
+use Request;
 
 class ImageController extends Controller
 {
     public function create($image, $type, $width, $height, $ext)
     {
         try {
-            if ((config('app.debug') || !empty(Request::server('HTTP_REFERER'))) && file_exists(public_path("files{$image}.{$ext}"))) {
+            if ((config('app.debug') || !empty(Request::server('HTTP_REFERER')))) {
                 $w = $width * 10;
                 if ($w <= 0) $w = null;
 
@@ -21,12 +21,24 @@ class ImageController extends Controller
                 if ($w > 2000 || $h > 1500)
                     abort(404);
 
-                $img = Image::make("files{$image}.{$ext}");
+                if (!in_array($type, ['_', '-']))
+                    return abort(404);
+
+                if (file_exists(public_path("files{$image}.{$ext}")))
+                    $img = Image::make("files{$image}.{$ext}");
+                else {
+                    if (($image404 = config('image-fit.image_404')) && file_exists(public_path($image404))) {
+                        $img = Image::make($image404);
+                    } elseif (file_exists(public_path('vendor/image-fit/404.jpg'))) {
+                        $img = Image::make(public_path('vendor/image-fit/404.jpg'));
+                    } else
+                        return abort(404);
+                }
 
                 switch ($type) {
                     case '_':
                         if ($w == null || $h == null)
-                            abort(404);
+                            return abort(404);
                         else {
                             $img->fit($w, $h);
                         }
@@ -44,17 +56,15 @@ class ImageController extends Controller
                         }
 
                         break;
-                    default:
-                        abort(404);
                 }
 
-                @mkdir(dirname(public_path("images{$image}.{$ext}")), 0755, true);
-                $img->save("images{$image}{$type}{$width}x{$height}.{$ext}");
+                @mkdir(dirname(public_path(config('image-fit.prefix') . "{$image}.{$ext}")), 0755, true);
+                $img->save(public_path(config('image-fit.prefix') . "{$image}{$type}{$width}x{$height}.{$ext}"));
                 return $img->response($ext);
             }
-        } catch(\Exception $e){}
+        } catch (\Exception $e) {
+        }
 
-        abort(404);
-        return false;
+        return abort(404);
     }
 }
