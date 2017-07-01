@@ -2,5 +2,6 @@
 
 return [
     'prefix' => 'images',
-    'default_image' => 'files/_/no-image.jpg',
+    'image_default' => null,
+    'image_404' => null,
 ];
