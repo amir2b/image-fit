@@ -11,6 +11,7 @@ if (!function_exists('image_url')) {
      */
     function image_url($file, $width = 0, $height = 0, $is_crop = false)
     {
+        $file = trim($file, '/');
         if (empty($file)) {
             if (!empty(config('image-fit.image_default')))
                 $file = config('image-fit.image_default');
