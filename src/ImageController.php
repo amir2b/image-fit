@@ -23,12 +23,14 @@ class ImageController extends Controller
 
                 if (!in_array($type, ['_', '-']))
                     return abort(404);
+                    
+				$root_path = config(config('image-fit.root_path'), 'files');
 
                 if (
                     in_array(strtolower($ext), ['png', 'jpg', 'jpeg', 'git']) &&
-                    file_exists(public_path("files{$image}.{$ext}"))
+                    file_exists(public_path("{$root_path}{$image}.{$ext}"))
                 ) {
-                    $img = Image::make("files{$image}.{$ext}");
+                    $img = Image::make("{$root_path}{$image}.{$ext}");
                 } else {
                     if (($image404 = config('image-fit.image_404')) && file_exists(public_path($image404))) {
                         $img = Image::make($image404);
