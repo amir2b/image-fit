@@ -24,9 +24,12 @@ class ImageController extends Controller
                 if (!in_array($type, ['_', '-']))
                     return abort(404);
 
-                if (file_exists(public_path("files{$image}.{$ext}")))
+                if (
+                    in_array(strtolower($ext), ['png', 'jpg', 'jpeg', 'git']) &&
+                    file_exists(public_path("files{$image}.{$ext}"))
+                ) {
                     $img = Image::make("files{$image}.{$ext}");
-                else {
+                } else {
                     if (($image404 = config('image-fit.image_404')) && file_exists(public_path($image404))) {
                         $img = Image::make($image404);
                     } elseif (file_exists(public_path('vendor/image-fit/404.jpg'))) {
