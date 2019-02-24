@@ -11,7 +11,7 @@ if (!function_exists('image_url')) {
      */
     function image_url($file, $width = 0, $height = 0, $is_crop = false)
     {
-		$root_path = config(config('image-fit.root_path'), 'files');
+		$root_path = config('image-fit.root_path', 'files');
 		
         $file = trim($file, '/');
         if (empty($file)) {
