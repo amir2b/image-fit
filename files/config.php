@@ -5,5 +5,5 @@ return [
     'image_default' => null,
     'image_404' => null,
     'root_path' => 'files',
-    'ext' => ['png', 'jpg', 'jpeg', 'gif', 'webp']
+    'valid_extensions' => ['png', 'jpg', 'jpeg', 'gif', 'webp']
 ];
