@@ -27,7 +27,7 @@ class ImageController extends Controller
 				$root_path = config('image-fit.root_path', 'files');
 
                 if (
-                    in_array(strtolower($ext), ['png', 'jpg', 'jpeg', 'gif']) &&
+                    in_array(strtolower($ext), ['png', 'jpg', 'jpeg', 'gif', 'webp']) &&
                     file_exists(public_path("{$root_path}{$image}.{$ext}"))
                 ) {
                     $img = Image::make("{$root_path}{$image}.{$ext}");
