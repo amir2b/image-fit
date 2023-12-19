@@ -10,6 +10,8 @@ class ImageController extends Controller
 {
     public function create($image, $type, $width, $height, $ext)
     {
+	$valid_extensions = config('image-fit.valid_extensions', ['png', 'jpg', 'jpeg', 'gif']);
+	    
         try {
             if ((config('app.debug') || !empty(Request::server('HTTP_REFERER')))) {
                 $w = $width * 10;
@@ -27,7 +29,7 @@ class ImageController extends Controller
 				$root_path = config('image-fit.root_path', 'files');
 
                 if (
-                    in_array(strtolower($ext), ['png', 'jpg', 'jpeg', 'gif']) &&
+                    in_array(strtolower($ext), $valid_extensions) &&
                     file_exists(public_path("{$root_path}{$image}.{$ext}"))
                 ) {
                     $img = Image::make("{$root_path}{$image}.{$ext}");

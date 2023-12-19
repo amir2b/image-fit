@@ -13,6 +13,8 @@ if (! function_exists('image_url')) {
     {
         $root_path = config('image-fit.root_path', 'files');
 
+        $valid_extensions = config('image-fit.valid_extensions', ['png', 'jpg', 'jpeg', 'gif']);
+
         $file = trim($file, '/');
         if (empty($file)) {
             if (! empty(config('image-fit.image_default'))) {
@@ -24,7 +26,7 @@ if (! function_exists('image_url')) {
 
         $info = pathinfo($file);
 
-        if (count($info) === 4 && in_array($info['extension'], ['png', 'jpg', 'jpeg', 'gif'])) {
+        if (count($info) === 4 && in_array($info['extension'], $valid_extensions)) {
             if (strpos($info['dirname'], "{$root_path}/") === 0) {
                 $file = config('image-fit.prefix').'/'.substr($info['dirname'], 6)."/{$info['filename']}";
             } elseif ($info['dirname'] === $root_path) {
